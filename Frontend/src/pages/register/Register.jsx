@@ -2,16 +2,13 @@ import React, { useRef } from "react";
 import "./Register.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { client } from "../../actionCalls";
 
 export default function Register() {
   const username = useRef();
   const email = useRef(); //値を監視できる ref={}属性をつけて使う
   const password = useRef();
   const passwordConfirmation = useRef();
-
-  const client = axios.create({
-    baseURL: process.env.BACKEND_ACCESS,
-  });
 
   const navigate = useNavigate(); //App.jsのNavigateコンポーネントと同じ役割（react-router-dom)
 
@@ -32,6 +29,7 @@ export default function Register() {
 
         //registerAPIを叩く
         await client("/auth/register", user);
+        // await axios.post("/auth/register", user);
         //home画面に移動する
         navigate("/login");
       } catch (err) {

@@ -1,5 +1,9 @@
 import axios from "axios";
 
+export const client = axios.create({
+  baseURL: process.env.BACKEND_ACCESS,
+});
+
 export const loginCall = async (user, dispatch) => {
   const client = axios.create({
     baseURL: process.env.BACKEND_ACCESS,
