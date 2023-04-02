@@ -128,3 +128,9 @@
   border-radius: 5px;
   object-fit: cover;
 }
+
+@media screen and (max-width: 600px) {
+  .rightbar {
+    display: none;
+  }
+} ;
