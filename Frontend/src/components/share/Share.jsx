@@ -28,9 +28,11 @@ export default function Share() {
 
       try {
         //画像APIを叩く
+        console.log("画像アップロード開始");
         await axios.post("/upload", data);
+        console.log("画像アップロード終了");
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     }
 
