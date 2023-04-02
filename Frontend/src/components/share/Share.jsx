@@ -3,6 +3,7 @@ import React, { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../state/AuthContext";
 import "./Share.css";
 import axios from "axios";
+import { client } from "../../actionCalls";
 
 export default function Share() {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -29,7 +30,8 @@ export default function Share() {
       try {
         //画像APIを叩く
         console.log("画像アップロード開始");
-        await axios.post("/upload", data);
+        // await axios.post("/upload", data);
+        await client("/upload", data);
         console.log("画像アップロード終了");
       } catch (err) {
         console.error(err);
@@ -37,7 +39,8 @@ export default function Share() {
     }
 
     try {
-      await axios.post("/posts", newPost);
+      // await axios.post("/posts", newPost);
+      await client("/posts", newPost);
       window.location.reload();
     } catch (err) {
       console.log(err);

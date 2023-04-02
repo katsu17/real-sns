@@ -3,6 +3,7 @@ import Share from "../share/Share";
 import Post from "../post/Post";
 import { Posts } from "../../../src/dummyData";
 import axios from "axios";
+import { client } from "../../actionCalls";
 
 import "./TimeLine.css";
 import { AuthContext } from "../../state/AuthContext";
@@ -13,8 +14,10 @@ export default function Timeline({ username }) {
   useEffect(() => {
     const fetchPosts = async () => {
       const response = username
-        ? await axios.get(`/posts/profile/${username}`) //プロフィールの場合
-        : await axios.get(`/posts/timeline/${user._id}`); //ホームの場合
+        ? // ? await axios.get(`/posts/profile/${username}`) //プロフィールの場合
+          await client(`/posts/profile/${username}`) //プロフィールの場合
+        : // : await axios.get(`/posts/timeline/${user._id}`); //ホームの場合
+          await client(`/posts/timeline/${user._id}`); //ホームの場合
       // console.log(response);
       setPosts(
         response.data.sort((post1, post2) => {

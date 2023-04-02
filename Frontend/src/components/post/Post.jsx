@@ -6,6 +6,7 @@ import "./Post.css";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../state/AuthContext";
+import { client } from "../../actionCalls";
 
 export default function Post({ post }) {
   const [like, setLike] = useState(post.likes.length);
@@ -17,7 +18,8 @@ export default function Post({ post }) {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const response = await axios.get(`/users?userId=${post.userId}`);
+      // const response = await axios.get(`/users?userId=${post.userId}`);
+      const response = await client(`/users?userId=${post.userId}`);
       // console.log(response);
       setUser(response.data);
     };
@@ -27,7 +29,8 @@ export default function Post({ post }) {
   const handleLike = async () => {
     try {
       //いいねのAPIを叩く
-      await axios.put(`/posts/${post._id}/like`, { userId: currentUser._id });
+      // await axios.put(`/posts/${post._id}/like`, { userId: currentUser._id });
+      await client(`/posts/${post._id}/like`, { userId: currentUser._id });
     } catch (err) {
       console.log(err);
     }

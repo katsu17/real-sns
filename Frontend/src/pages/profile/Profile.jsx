@@ -6,6 +6,7 @@ import Rightbar from "../../components/rightbar/Rightbar";
 import "./Profile.css";
 import axios from "axios";
 import { useParams } from "react-router-dom"; // App.jsにrouteで設定した値にパラメータを持ってこれるuse
+import { client } from "../../actionCalls";
 
 export default function Profile() {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -14,7 +15,8 @@ export default function Profile() {
   console.log(username);
   useEffect(() => {
     const fetchUser = async () => {
-      const response = await axios.get(`/users?username=${username}`);
+      // const response = await axios.get(`/users?username=${username}`);
+      const response = await client(`/users?username=${username}`);
       console.log(response);
       setUser(response.data);
     };
