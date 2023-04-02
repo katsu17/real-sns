@@ -30,7 +30,7 @@ export default function Register() {
         };
 
         //registerAPIを叩く
-        await client.axios.post("/auth/register", user);
+        await client.post("/auth/register", user);
         //home画面に移動する
         navigate("/login");
       } catch (err) {
