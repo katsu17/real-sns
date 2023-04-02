@@ -8,8 +8,7 @@ export default function Register() {
   const email = useRef(); //値を監視できる ref={}属性をつけて使う
   const password = useRef();
   const passwordConfirmation = useRef();
-  const baseURL = process.env.BACKEND_ACCESS,
-
+  const baseURL = process.env.BACKEND_ACCESS;
 
   const navigate = useNavigate(); //App.jsのNavigateコンポーネントと同じ役割（react-router-dom)
 
@@ -29,7 +28,7 @@ export default function Register() {
         };
 
         //registerAPIを叩く
-        await client.post(`${baseURL}auth/register`, user);
+        await axios.post(`${baseURL}auth/register`, user);
         //home画面に移動する
         navigate("/login");
       } catch (err) {
